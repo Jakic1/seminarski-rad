@@ -1,0 +1,241 @@
+﻿
+drop database s0122213837_1;
+create database s0122213837_1 charset utf8;
+use s0122213837_1;
+create table operater(
+sifra int not null primary key auto_increment,
+email nvarchar(200) not null,
+lozinka char(32) not null,
+ime nvarchar(100) not null,
+prezime nvarchar(100) not null
+)engine=innodb;
+
+create table pice(
+sifra int not null primary key auto_increment,
+vrsta boolean,
+naziv nvarchar(50) not null
+)engine=innodb;
+
+
+create table rodjendan(
+sifra int not null primary key auto_increment,
+slavljenik nvarchar(50) not null,
+prostor nvarchar (50) not null,
+datum datetime not null,
+slavljenikova_godina int
+)engine=innodb;
+
+
+create table uzvanik (
+sifra int not null primary key auto_increment,
+ime nvarchar(50) not null,
+prezime nvarchar(50) not null,
+dob int,
+rodjendan int
+)engine=innodb;
+
+
+create table pice_uzvanik(
+pice int,
+uzvanik int
+)engine=innodb;
+
+
+
+alter table uzvanik add foreign key (rodjendan) references 
+rodjendan(sifra);
+alter table pice_uzvanik add foreign key (pice) references 
+pice(sifra);
+alter table pice_uzvanik add foreign key (uzvanik) references 
+uzvanik(sifra);
+
+insert into operater(email,lozinka,ime,prezime)
+values ('ijakic1@ffos.hr',md5('i'),'Ivana','Jakić');
+
+
+insert into pice(vrsta,naziv)
+values(1,'Vodka');
+insert into pice(vrsta,naziv)
+values(0,'Cola');
+insert into pice(naziv)
+values('Sprite');
+insert into pice(naziv)
+values('Pivo');
+insert into pice(vrsta,naziv)
+values(1,'Vino');
+insert into pice(vrsta,naziv)
+values(1,'Rum');
+insert into pice(vrsta,naziv)
+values(0,'Fanta');
+insert into pice(vrsta,naziv)
+values(0,'Ledeni čaj');
+insert into pice(vrsta,naziv)
+values(1,'Liker');
+insert into pice(vrsta,naziv)
+values(1,'Konjak');
+insert into pice(naziv)
+values('Rakija');
+insert into pice(vrsta,naziv)
+values(0,'Mineralna');
+insert into pice(vrsta,naziv)
+values(1,'Whiskey');
+insert into pice(vrsta,naziv)
+values(1,'Jagermaister');
+insert into pice(vrsta,naziv)
+values(0,'Juicy');
+insert into pice(vrsta,naziv)
+values(1,'Jack Daniels');
+insert into pice(naziv)
+values('Tekila');
+insert into pice(vrsta,naziv)
+values(0,'Bravo');
+insert into pice(naziv)
+values('Schweppes');
+insert into pice(vrsta,naziv)
+values(0,'Studena');
+
+
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Dalibor Kristijan Vukas','VIM','2014-05-29',21);
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Antonio Hrvoje Puđa','Vukovarska 78','2014-05-21',22);
+insert into rodjendan(slavljenik,prostor,datum)
+values('Sanja Sušilović','Retfala 21','2014-06-19');
+insert into rodjendan(slavljenik,prostor,datum)
+values('Vedrana Filić','Jug 2 17','2014-07-30');
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Vedran koščević Benić','Bosutsko','2014-06-11',22);
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Nikolina Begović','Tenja 11','2014-06-12',21);
+insert into rodjendan(slavljenik,prostor,datum)
+values('Josipa Jorgić','Belišće 20','2014-05-30');
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Josipa Katalenić','Sjenjak 135','2014-06-19',21);
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Marko Zovko','Josipovac','2014-07-17',23);
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Ivan marić','Valpovo','2014-07-11',21);
+insert into rodjendan(slavljenik,prostor,datum)
+values('Katarina Pavlović','Trpinja','2014-06-19');
+insert into rodjendan(slavljenik,prostor,datum)
+values('Ivana Kosić','Borovo','2014-07-21');
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Marinko Katava','Jagodnjak','2014-06-22',22);
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Ivica Kraljević','Beli Manastir','2014-06-13',22);
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Sanja Vitner','Ivankovo','2014-07-17',21);
+insert into rodjendan(slavljenik,prostor,datum)
+values('Ruža Jakšić','Đakovo','2014-07-25');
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Kristina Pranjić','Njemci','2014-06-23',21);
+insert into rodjendan(slavljenik,prostor,datum)
+values('Ana Mihaljević','Ilača','2014-06-29');
+insert into rodjendan(slavljenik,prostor,datum)
+values('Ivana Džambo','Vinkovci','2014-07-12');
+insert into rodjendan(slavljenik,prostor,datum,slavljenikova_godina)
+values('Valentina Mrkonjić','Našice','2014-07-13',22);
+
+
+insert into uzvanik(ime,prezime,rodjendan)
+values('Magdalena','Kuleš',15);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Marinela','Rajković',21,20);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Dino','bečarević',1);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Ema','Čelebić',21,19);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Manuela','Orličnik',18);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Josipa','Iljić',16);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Katarina','Bošnjak',21,17);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Fani','Piknjač',13);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Zvonimir','Starčević',22,15);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Robert','Županić',12);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Marija','Vencel',20,14);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Sara','bakota',11);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Jelena','brkljač',21,9);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Marko','Glibušić',6);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Martina','Bošnjak',26,8);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Tomislav','Vargašević',19,7);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Anja','Martinović',23,1);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Vedrana','Miščević',3);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Nataša','Trivić',21,4);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Ana','Žeravica',2);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Ivan','Kresić',23,5);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Martina','Dropulja',21,10);
+insert into uzvanik(ime,prezime,rodjendan)
+values('Valerija','Mrkonjić',3);
+insert into uzvanik(ime,prezime,dob,rodjendan)
+values('Anita','Pavlovoć',22,19);
+
+
+
+
+insert into pice_uzvanik(pice,uzvanik)
+values(20,1);
+insert into pice_uzvanik(pice,uzvanik)
+values(19,2);
+insert into pice_uzvanik(pice,uzvanik)
+values(18,3);
+insert into pice_uzvanik(pice,uzvanik)
+values(17,4);
+insert into pice_uzvanik(pice,uzvanik)
+values(16,5);
+insert into pice_uzvanik(pice,uzvanik)
+values(15,6);
+insert into pice_uzvanik(pice,uzvanik)
+values(14,7);
+insert into pice_uzvanik(pice,uzvanik)
+values(13,8);
+insert into pice_uzvanik(pice,uzvanik)
+values(12,9);
+insert into pice_uzvanik(pice,uzvanik)
+values(11,10);
+insert into pice_uzvanik(pice,uzvanik)
+values(10,11);
+insert into pice_uzvanik(pice,uzvanik)
+values(1,12);
+insert into pice_uzvanik(pice,uzvanik)
+values(2,13);
+insert into pice_uzvanik(pice,uzvanik)
+values(4,14);
+insert into pice_uzvanik(pice,uzvanik)
+values(3,15);
+insert into pice_uzvanik(pice,uzvanik)
+values(5,16);
+insert into pice_uzvanik(pice,uzvanik)
+values(7,17);
+insert into pice_uzvanik(pice,uzvanik)
+values(8,18);
+insert into pice_uzvanik(pice,uzvanik)
+values(9,19);
+insert into pice_uzvanik(pice,uzvanik)
+values(20,20);
+insert into pice_uzvanik(pice,uzvanik)
+values(20,21);
+insert into pice_uzvanik(pice,uzvanik)
+values(16,22);
+insert into pice_uzvanik(pice,uzvanik)
+values(11,23);
+insert into pice_uzvanik(pice,uzvanik)
+values(15,24);
+
+
